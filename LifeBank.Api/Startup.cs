@@ -20,6 +20,7 @@ namespace LifeBank.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
             services.AddApplicationInsightsTelemetry();
 
             services.AddSwaggerGen(swagger =>
@@ -42,6 +43,8 @@ namespace LifeBank.Api
             });
 
             services.AddSwaggerGenNewtonsoftSupport();
+
+            services.AddHealthChecks();
 
             services.AddControllers();
         }
