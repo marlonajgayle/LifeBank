@@ -60,7 +60,6 @@ namespace LifeBank.Api
             // Enable Middelware to serve Swagger UI (HTML, JavaScript, CSS etc.)
             app.UseSwaggerUI(c => {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "LifeBank API");
-                c.RoutePrefix = string.Empty;
             });
 
             // Https Redirect middleware
