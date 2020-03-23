@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using System;
 
 namespace LifeBank.Api
 {
@@ -23,7 +24,21 @@ namespace LifeBank.Api
 
             services.AddSwaggerGen(swagger =>
             {
-                swagger.SwaggerDoc("v1", new OpenApiInfo { Title = "LifeBank API", Version = "v1" });
+                swagger.SwaggerDoc("v1", new OpenApiInfo
+                { 
+                    Title = "LifeBank API", 
+                    Version = "v1",
+                    Description = "",
+                    Contact = new OpenApiContact
+                    {
+                        Name = "Marlon Gayle"
+                    },
+                    License = new OpenApiLicense
+                    {
+                        Name = "MIT License",
+                        Url = new Uri("https://github.com/marlonajgayle/LifeBank/blob/master/LICENSE.md"),
+                    }
+                });
             });
 
             services.AddSwaggerGenNewtonsoftSupport();
@@ -45,6 +60,7 @@ namespace LifeBank.Api
             // Enable Middelware to serve Swagger UI (HTML, JavaScript, CSS etc.)
             app.UseSwaggerUI(c => {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "LifeBank API");
+                c.RoutePrefix = string.Empty;
             });
 
             // Https Redirect middleware
