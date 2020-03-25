@@ -16,5 +16,10 @@
     <ProjectReference Include="..\LifeBank.Application\LifeBank.Application.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\V1\" />
+    <Folder Include="Routes\" />
+  </ItemGroup>
+
 
 </Project>
