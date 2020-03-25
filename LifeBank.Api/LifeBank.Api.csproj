@@ -18,7 +18,6 @@
 
   <ItemGroup>
     <Folder Include="Controllers\V1\" />
-    <Folder Include="Routes\" />
   </ItemGroup>
 
 
