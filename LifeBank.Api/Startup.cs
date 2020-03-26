@@ -50,7 +50,7 @@ namespace LifeBank.Api
             services.AddSwaggerGenNewtonsoftSupport();
 
             services.AddHealthChecks()
-                .AddCheck<ApplicationHealthCheck>(name: "LifeBank");
+                .AddCheck<ApplicationHealthCheck>(name: "LifeBank API");
 
             services.AddControllers();
         }

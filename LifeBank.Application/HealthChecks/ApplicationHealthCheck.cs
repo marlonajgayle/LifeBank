@@ -9,7 +9,7 @@ namespace LifeBank.Application.HealthChecks
         public Task<HealthCheckResult> CheckHealthAsync(HealthCheckContext context, 
             CancellationToken cancellationToken = default)
         {
-            return Task.FromResult(HealthCheckResult.Healthy());
+            return Task.FromResult(HealthCheckResult.Healthy(description: "Build 1.0.1.1"));
         }
     }
 }
