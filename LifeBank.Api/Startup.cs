@@ -1,3 +1,4 @@
+using LifeBank.Application;
 using LifeBank.Application.HealthChecks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
@@ -49,8 +50,8 @@ namespace LifeBank.Api
 
             services.AddSwaggerGenNewtonsoftSupport();
 
-            services.AddHealthChecks()
-                .AddCheck<ApplicationHealthCheck>(name: "LifeBank API");
+            // Add LifeBank.Application Service Configurations
+            services.AddApplication();
 
             services.AddControllers();
         }
