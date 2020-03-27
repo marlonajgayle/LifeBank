@@ -30,6 +30,8 @@ namespace LifeBank.UnitTests.Application
             var healthCheckResponse = JsonConvert.DeserializeObject<HealthCheckResponse>(result.Result);
 
             Assert.Equal("Healthy", healthCheckResponse.Status);
+            Assert.All(healthCheckResponse.Checks, item => Assert.Contains("Healthy", item.Status));
+            Assert.All(healthCheckResponse.Checks, item => Assert.Contains("LifeBank API", item.Component));
         }
     }
 }
