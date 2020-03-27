@@ -32,6 +32,7 @@ namespace LifeBank.UnitTests.Application
             Assert.Equal("Healthy", healthCheckResponse.Status);
             Assert.All(healthCheckResponse.Checks, item => Assert.Contains("Healthy", item.Status));
             Assert.All(healthCheckResponse.Checks, item => Assert.Contains("LifeBank API", item.Component));
+            Assert.All(healthCheckResponse.Checks, item => Assert.NotNull(item.Description));
         }
     }
 }
