@@ -1,10 +1,11 @@
-﻿using System;
+﻿using LifeBank.Domain.Common;
+using System;
 
 namespace LifeBank.Domain.Entities
 {
-    public class Donation
+    public class Donation : AuditableEntity
     {
-        public long Id { get; set; }
+        public long DonationId { get; set; }
         public long DonorId { get; set; }
         public int UnitsOfBlood { get; set; }
         public DateTime DonationDate { get; set; }
