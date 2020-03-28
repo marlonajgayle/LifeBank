@@ -1,5 +1,7 @@
 ﻿using LifeBank.Infrastructure.HealthChecks;
+using MediatR;
 using Microsoft.Extensions.DependencyInjection;
+using System.Reflection;
 
 namespace LifeBank.Infrastructure
 {
@@ -10,6 +12,10 @@ namespace LifeBank.Infrastructure
             // Register Health Check
             services.AddHealthChecks()
                 .AddCheck<ApplicationHealthCheck>(name: "LifeBank API");
+
+            // Register MediatR 
+            services.AddMediatR(Assembly.GetExecutingAssembly());
+
             return services;
         }
     }
