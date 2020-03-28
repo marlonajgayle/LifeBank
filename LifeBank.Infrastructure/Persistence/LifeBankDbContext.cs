@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace LifeBank.Infrastructure.Persistence
 {
-    class LifeBankDbContext : DbContext
+    public class LifeBankDbContext : DbContext
     {
         public LifeBankDbContext(DbContextOptions<LifeBankDbContext> options)
             : base(options)

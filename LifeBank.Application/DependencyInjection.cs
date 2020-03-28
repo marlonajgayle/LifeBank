@@ -1,4 +1,5 @@
-﻿using LifeBank.Infrastructure.HealthChecks;
+﻿using AutoMapper;
+using LifeBank.Infrastructure.HealthChecks;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
@@ -15,6 +16,9 @@ namespace LifeBank.Infrastructure
 
             // Register MediatR 
             services.AddMediatR(Assembly.GetExecutingAssembly());
+
+            // Register AutoMapper
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
             return services;
         }
