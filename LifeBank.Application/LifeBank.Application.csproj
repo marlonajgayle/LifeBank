@@ -11,6 +11,8 @@
     <Folder Include="Common\Exceptions\" />
     <Folder Include="Common\Behaviours\" />
     <Folder Include="Common\" />
+    <Folder Include="Donor\Commands\" />
+    <Folder Include="Donor\Queries\" />
   </ItemGroup>
 
   <ItemGroup>
