@@ -1,5 +1,5 @@
-using LifeBank.Application;
-using LifeBank.Application.HealthChecks;
+using LifeBank.Infrastructure;
+using LifeBank.Infrastructure.HealthChecks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
@@ -16,12 +16,14 @@ namespace LifeBank.Api
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IWebHostEnvironment environment)
         {
             Configuration = configuration;
+            Environment = environment;
         }
 
         public IConfiguration Configuration { get; }
+        public IWebHostEnvironment Environment { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -52,6 +54,9 @@ namespace LifeBank.Api
 
             // Add LifeBank.Application Service Configurations
             services.AddApplication();
+
+            // Add LifeBank.Infrastructure Service Configuration
+            services.AddInfrastructure(Configuration, Environment);
 
             services.AddControllers();
         }

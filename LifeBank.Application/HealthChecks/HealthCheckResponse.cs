@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace LifeBank.Application.HealthChecks
+namespace LifeBank.Infrastructure.HealthChecks
 {
     public class HealthCheckResponse
     {

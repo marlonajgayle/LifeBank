@@ -2,7 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace LifeBank.Application.HealthChecks
+namespace LifeBank.Infrastructure.HealthChecks
 {
     public class ApplicationHealthCheck : IHealthCheck
     {

@@ -1,5 +1,5 @@
 ﻿using LifeBank.Api;
-using LifeBank.Application.HealthChecks;
+using LifeBank.Infrastructure.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
 using Newtonsoft.Json;

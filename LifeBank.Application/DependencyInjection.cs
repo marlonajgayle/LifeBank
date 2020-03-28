@@ -1,7 +1,7 @@
-﻿using LifeBank.Application.HealthChecks;
+﻿using LifeBank.Infrastructure.HealthChecks;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace LifeBank.Application
+namespace LifeBank.Infrastructure
 {
     public static class DependencyInjection
     {

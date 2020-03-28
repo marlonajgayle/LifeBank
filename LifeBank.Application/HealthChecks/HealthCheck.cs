@@ -1,4 +1,4 @@
-﻿namespace LifeBank.Application.HealthChecks
+﻿namespace LifeBank.Infrastructure.HealthChecks
 {
     public class HealthCheck
     {
