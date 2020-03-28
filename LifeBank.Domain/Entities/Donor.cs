@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace LifeBank.Domain.Entities
 {
@@ -11,5 +12,6 @@ namespace LifeBank.Domain.Entities
         public string Gender { get; set; }
         public DateTime DateOfBirth { get; set; }
         public string BloodType { get; set; }
+        public IEnumerable<Donation> Donations { get; set; }
     }
 }
