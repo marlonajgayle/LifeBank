@@ -8,8 +8,8 @@
 
         public static class Donors
         {
-            public const string Create = "${base}" + "/donor";
-            public const string Get = "${base}" + "/donor/{donorId}";
+            public const string Create = Base + "/donor";
+            public const string Get = Base + "/donor/{donorId}";
         }
     }
 }
