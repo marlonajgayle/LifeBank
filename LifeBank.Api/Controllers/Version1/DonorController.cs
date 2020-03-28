@@ -1,5 +1,6 @@
 ﻿using LifeBank.Api.Routes.Version1;
 using LifeBank.Application.Donors.Commands.CreateDonor;
+using LifeBank.Application.Donors.Models;
 using LifeBank.Application.Donors.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
