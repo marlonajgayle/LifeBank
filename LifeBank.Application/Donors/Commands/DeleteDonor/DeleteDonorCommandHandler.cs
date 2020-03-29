@@ -25,7 +25,7 @@ namespace LifeBank.Application.Donors.Commands.DeleteDonor
 
                 await dbContext.SaveChangesAsync(cancellationToken);
             }
-            else 
+            else
             {
                 throw new Exception();
             }

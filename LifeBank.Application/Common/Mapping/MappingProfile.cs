@@ -4,7 +4,7 @@ using LifeBank.Domain.Entities;
 
 namespace LifeBank.Application.Common.Mapping
 {
-    public class MappingProfile: Profile
+    public class MappingProfile : Profile
     {
         public MappingProfile()
         {

@@ -26,7 +26,7 @@ namespace LifeBank.UnitTests.Application
         {
             var response = Client.GetAsync("/health");
 
-            var result =  response.Result.Content.ReadAsStringAsync();
+            var result = response.Result.Content.ReadAsStringAsync();
             var healthCheckResponse = JsonConvert.DeserializeObject<HealthCheckResponse>(result.Result);
 
             Assert.Equal("Healthy", healthCheckResponse.Status);

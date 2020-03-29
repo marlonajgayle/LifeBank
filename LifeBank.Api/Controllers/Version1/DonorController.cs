@@ -27,7 +27,7 @@ namespace LifeBank.Api.Controllers.Version1
             var query = new GetDonorByIdQuery(donorId);
             var result = await mediator.Send(query);
 
-            return result != null ? (IActionResult) Ok(result) : NotFound();
+            return result != null ? (IActionResult)Ok(result) : NotFound();
         }
 
         [HttpPost(ApiRoutes.Donors.Create)]

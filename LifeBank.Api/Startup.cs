@@ -34,8 +34,8 @@ namespace LifeBank.Api
             services.AddSwaggerGen(swagger =>
             {
                 swagger.SwaggerDoc("v1", new OpenApiInfo
-                { 
-                    Title = "LifeBank API", 
+                {
+                    Title = "LifeBank API",
                     Version = "v1",
                     Description = "",
                     Contact = new OpenApiContact
@@ -73,14 +73,15 @@ namespace LifeBank.Api
             app.UseSwagger();
 
             // Enable Middelware to serve Swagger UI (HTML, JavaScript, CSS etc.)
-            app.UseSwaggerUI(c => {
+            app.UseSwaggerUI(c =>
+            {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "LifeBank API");
             });
 
             // Enable Health Check Middleware
-            app.UseHealthChecks("/health", new HealthCheckOptions 
+            app.UseHealthChecks("/health", new HealthCheckOptions
             {
-                ResponseWriter = async(context, report) =>
+                ResponseWriter = async (context, report) =>
                 {
                     context.Response.ContentType = "application/json";
 
