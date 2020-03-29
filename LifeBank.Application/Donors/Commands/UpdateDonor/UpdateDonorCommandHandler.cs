@@ -1,6 +1,6 @@
-﻿using AutoMapper;
-using LifeBank.Infrastructure.Persistence;
+﻿using LifeBank.Infrastructure.Persistence;
 using MediatR;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -9,12 +9,10 @@ namespace LifeBank.Application.Donors.Commands.UpdateDonor
     public class UpdateDonorCommandHandler : IRequestHandler<UpdateDonorCommand, long>
     {
         private readonly LifeBankDbContext dbContext;
-        private readonly IMapper mapper;
 
-        public UpdateDonorCommandHandler(LifeBankDbContext dbContext, IMapper mapper)
+        public UpdateDonorCommandHandler(LifeBankDbContext dbContext)
         {
             this.dbContext = dbContext;
-            this.mapper = mapper;
         }
         public async Task<long> Handle(UpdateDonorCommand request, CancellationToken cancellationToken)
         {
@@ -34,7 +32,7 @@ namespace LifeBank.Application.Donors.Commands.UpdateDonor
             }
             else
             {
-                return 0;
+                throw new Exception();
             }
 
             return entity.DonorId;
