@@ -3,6 +3,7 @@ using LifeBank.Application.Donors.Models;
 using LifeBank.Domain.Entities;
 using LifeBank.Infrastructure.Persistence;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -21,7 +22,9 @@ namespace LifeBank.Application.Donors.Queries
 
         public async Task<DonorViewModel> Handle(GetDonorByIdQuery request, CancellationToken cancellationToken)
         {
-            Donor entity = await dBContext.Donors.FindAsync(request.DonorId);
+            Donor entity = await dBContext.Donors
+                .SingleOrDefaultAsync(x => x.DonorId == request.DonorId);
+
             return mapper.Map<DonorViewModel>(entity);
         }
     }
