@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using LifeBank.Application.Donors.Models;
 using LifeBank.Infrastructure.Persistence;
 using MediatR;
 using System.Threading;
@@ -7,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LifeBank.Application.Donors.Commands.UpdateDonor
 {
-    public class UpdateDonorCommandHandler : IRequestHandler<UpdateDonorCommand, DonorViewModel>
+    public class UpdateDonorCommandHandler : IRequestHandler<UpdateDonorCommand, long>
     {
         private readonly LifeBankDbContext dbContext;
         private readonly IMapper mapper;
@@ -17,21 +16,28 @@ namespace LifeBank.Application.Donors.Commands.UpdateDonor
             this.dbContext = dbContext;
             this.mapper = mapper;
         }
-        public async Task<DonorViewModel> Handle(UpdateDonorCommand request, CancellationToken cancellationToken)
+        public async Task<long> Handle(UpdateDonorCommand request, CancellationToken cancellationToken)
         {
             // check to see if donor exist
             var entity = await dbContext.Donors.FindAsync(request.DonorId);
 
             if (entity != null)
             {
-                dbContext.Donors.Remove(entity);
+                entity.FirstName = request.FirstName;
+                entity.MiddleInital = request.MiddleInital;
+                entity.LastName = request.LastName;
+                entity.Gender = request.Gender;
+                entity.DateOfBirth = request.DateOfBirth;
+                entity.BloodType = request.BloodType;
+
+                await dbContext.SaveChangesAsync(cancellationToken);
             }
             else
             {
-                return null;
+                return 0;
             }
 
-            return mapper.Map<DonorViewModel>(entity);
+            return entity.DonorId;
         }
     }
 }
