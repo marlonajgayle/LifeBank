@@ -1,10 +1,11 @@
 ﻿using LifeBank.Domain.Entities;
+using LifeBank.Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace LifeBank.Infrastructure.Persistence
 {
-    public class LifeBankDbContext : IdentityDbContext
+    public class LifeBankDbContext : IdentityDbContext<ApplicationUser>
     {
         public LifeBankDbContext(DbContextOptions<LifeBankDbContext> options)
             : base(options)

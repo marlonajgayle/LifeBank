@@ -1,4 +1,5 @@
-﻿using LifeBank.Infrastructure.Persistence;
+﻿using LifeBank.Infrastructure.Identity;
+using LifeBank.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -15,7 +16,7 @@ namespace LifeBank.Infrastructure
             services.AddDbContextPool<LifeBankDbContext>(
                 options => options.UseSqlServer(configuration.GetConnectionString("LifeBankDbConnection")));
 
-            services.AddIdentity<IdentityUser, IdentityRole>()
+            services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<LifeBankDbContext>();
 
             return services;
