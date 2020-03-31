@@ -1,3 +1,4 @@
+using FluentValidation.AspNetCore;
 using LifeBank.Infrastructure;
 using LifeBank.Infrastructure.HealthChecks;
 using Microsoft.AspNetCore.Builder;
@@ -58,7 +59,9 @@ namespace LifeBank.Api
             // Add LifeBank.Infrastructure Service Configuration
             services.AddInfrastructure(Configuration, Environment);
 
-            services.AddControllers();
+            services
+                .AddControllers()
+                .AddFluentValidation(options => options.RegisterValidatorsFromAssemblyContaining<Startup>());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
