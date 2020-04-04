@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Common\Interfaces\" />
     <Folder Include="Common\Exceptions\" />
     <Folder Include="Common\Behaviours\" />
   </ItemGroup>
@@ -23,7 +22,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\LifeBank.Domain\LifeBank.Domain.csproj" />
-    <ProjectReference Include="..\LifeBank.Infrastructure\LifeBank.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

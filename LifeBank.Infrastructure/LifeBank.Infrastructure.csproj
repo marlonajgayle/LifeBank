@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\LifeBank.Application\LifeBank.Application.csproj" />
     <ProjectReference Include="..\LifeBank.Domain\LifeBank.Domain.csproj" />
   </ItemGroup>
 

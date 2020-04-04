@@ -1,4 +1,4 @@
-﻿using LifeBank.Infrastructure.Persistence;
+﻿using LifeBank.Application.Common.Interfaces;
 using MediatR;
 using System;
 using System.Threading;
@@ -8,9 +8,9 @@ namespace LifeBank.Application.Donors.Commands.UpdateDonor
 {
     public class UpdateDonorCommandHandler : IRequestHandler<UpdateDonorCommand, long>
     {
-        private readonly LifeBankDbContext dbContext;
+        private readonly ILifeBankDbContext dbContext;
 
-        public UpdateDonorCommandHandler(LifeBankDbContext dbContext)
+        public UpdateDonorCommandHandler(ILifeBankDbContext dbContext)
         {
             this.dbContext = dbContext;
         }

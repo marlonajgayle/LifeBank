@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
+using LifeBank.Application.Common.Interfaces;
 using LifeBank.Application.Donors.Models;
-using LifeBank.Infrastructure.Persistence;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
@@ -11,10 +11,10 @@ namespace LifeBank.Application.Donors.Queries.GetDonorsList
 {
     public class GetDonorsListQueryHandler : IRequestHandler<GetDonorsListQuery, List<DonorViewModel>>
     {
-        private readonly LifeBankDbContext dBcontext;
+        private readonly ILifeBankDbContext dBcontext;
         private readonly IMapper mapper;
 
-        public GetDonorsListQueryHandler(LifeBankDbContext dBcontext, IMapper mapper)
+        public GetDonorsListQueryHandler(ILifeBankDbContext dBcontext, IMapper mapper)
         {
             this.dBcontext = dBcontext;
             this.mapper = mapper;

@@ -1,4 +1,4 @@
-﻿using LifeBank.Infrastructure.Persistence;
+﻿using LifeBank.Application.Common.Interfaces;
 using MediatR;
 using System;
 using System.Threading;
@@ -8,9 +8,9 @@ namespace LifeBank.Application.Donors.Commands.DeleteDonor
 {
     public class DeleteDonorCommandHandler : IRequestHandler<DeleteDonorCommand>
     {
-        private readonly LifeBankDbContext dbContext;
+        private readonly ILifeBankDbContext dbContext;
 
-        public DeleteDonorCommandHandler(LifeBankDbContext dbContext)
+        public DeleteDonorCommandHandler(ILifeBankDbContext dbContext)
         {
             this.dbContext = dbContext;
         }

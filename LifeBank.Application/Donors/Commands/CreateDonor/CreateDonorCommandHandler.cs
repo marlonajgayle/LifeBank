@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
+using LifeBank.Application.Common.Interfaces;
 using LifeBank.Application.Donors.Models;
 using LifeBank.Domain.Entities;
-using LifeBank.Infrastructure.Persistence;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -9,11 +9,11 @@ namespace LifeBank.Application.Donors.Commands.CreateDonor
 {
     public class CreateDonorCommandHandler : MediatR.IRequestHandler<CreateDonorCommand, DonorViewModel>
     {
-        private readonly LifeBankDbContext DbContext;
+        private readonly ILifeBankDbContext DbContext;
         private readonly IMapper Mapper;
 
 
-        public CreateDonorCommandHandler(LifeBankDbContext dBContext, IMapper mapper)
+        public CreateDonorCommandHandler(ILifeBankDbContext dBContext, IMapper mapper)
         {
             DbContext = dBContext;
             Mapper = mapper;

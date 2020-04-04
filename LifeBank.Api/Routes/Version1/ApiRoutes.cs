@@ -15,5 +15,10 @@
             public const string Delete = Base + "/donors/{donorId}";
 
         }
+
+        public static class Registration
+        {
+            public const string Register = Base + "/register";
+        }
     }
 }
