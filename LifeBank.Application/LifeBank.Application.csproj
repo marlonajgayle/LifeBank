@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <Folder Include="Common\Interfaces\" />
-    <Folder Include="Common\Models\" />
     <Folder Include="Common\Exceptions\" />
     <Folder Include="Common\Behaviours\" />
   </ItemGroup>
