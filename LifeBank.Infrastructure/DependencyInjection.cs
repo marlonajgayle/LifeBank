@@ -16,8 +16,13 @@ namespace LifeBank.Infrastructure
             services.AddDbContextPool<LifeBankDbContext>(
                 options => options.UseSqlServer(configuration.GetConnectionString("LifeBankDbConnection")));
 
-            services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<LifeBankDbContext>();
+            services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+            {
+                options.Password.RequiredLength = 6;
+                options.Password.RequiredUniqueChars = 3;
+                options.Password.RequireDigit = true;
+                options.Password.RequireUppercase = true;
+            }).AddEntityFrameworkStores<LifeBankDbContext>();
 
             return services;
         }
