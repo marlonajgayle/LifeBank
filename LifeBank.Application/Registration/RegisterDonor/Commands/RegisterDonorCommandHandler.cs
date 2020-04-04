@@ -10,7 +10,7 @@ namespace LifeBank.Application.Registration.RegisterDonor.Commands
     {
         private readonly IUserManager userManager;
 
-        public RegisterDonorCommandHandler( IUserManager userManager)
+        public RegisterDonorCommandHandler(IUserManager userManager)
         {
             this.userManager = userManager;
         }

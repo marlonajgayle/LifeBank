@@ -20,5 +20,11 @@
         {
             public const string Register = Base + "/register";
         }
+
+        public static class Auth
+        {
+            public const string Login = Base + "/Login";
+            public const string Logout = Base + "/Logout";
+        }
     }
 }

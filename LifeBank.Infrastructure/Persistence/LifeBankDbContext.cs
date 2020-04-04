@@ -25,7 +25,7 @@ namespace LifeBank.Infrastructure.Persistence
         {
             CurrentUserService = currentUserService;
         }
-        
+
 
         public DbSet<Donor> Donors { get; set; }
         public DbSet<Donation> Donoations { get; set; }
