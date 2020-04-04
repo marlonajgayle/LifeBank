@@ -8,16 +8,23 @@ namespace LifeBank.Application.Registration.RegisterDonor.Commands
 {
     public class RegisterDonorCommandHandler : IRequestHandler<RegisterDonorCommand, Unit>
     {
-        public ILifeBankDbContext DbContext { get; }
+        private readonly IUserManager userManager;
 
-        public RegisterDonorCommandHandler(ILifeBankDbContext dbContext)
+        public RegisterDonorCommandHandler( IUserManager userManager)
         {
-            DbContext = dbContext;
+            this.userManager = userManager;
         }
 
-        public Task<Unit> Handle(RegisterDonorCommand request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(RegisterDonorCommand request, CancellationToken cancellationToken)
         {
-            throw new System.NotImplementedException();
+            var result = await userManager.CreateUserAsync(request.Email, request.Password);
+
+            if (!result.Result.Succeeded)
+            {
+                throw new System.Exception();
+            }
+
+            return Unit.Value;
         }
     }
 }
