@@ -45,5 +45,15 @@ namespace LifeBank.Infrastructure.Identity
 
             return result.ToApplicationResult();
         }
+
+        public async Task<object> FindUserByEmailAsync(string email)
+        {
+            return await userManager.FindByEmailAsync(email);
+        }
+
+        public async Task<string> GeneratePasswordUserTokenAsync(object user)
+        {
+            return await userManager.GeneratePasswordResetTokenAsync((ApplicationUser)user);
+        }
     }
 }

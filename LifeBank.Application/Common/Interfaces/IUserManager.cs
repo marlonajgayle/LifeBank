@@ -1,4 +1,5 @@
 ﻿using LifeBank.Application.Common.Models;
+using System;
 using System.Threading.Tasks;
 
 namespace LifeBank.Application.Common.Interfaces
@@ -8,5 +9,9 @@ namespace LifeBank.Application.Common.Interfaces
         Task<(Result Result, string UserId)> CreateUserAsync(string userName, string password);
 
         Task<Result> DeleteUserAsync(string userId);
+
+        Task<Object> FindUserByEmailAsync(string email);
+
+        Task<String> GeneratePasswordUserTokenAsync(Object user);
     }
 }

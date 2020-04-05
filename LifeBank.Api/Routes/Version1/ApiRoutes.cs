@@ -26,5 +26,10 @@
             public const string Login = Base + "/Login";
             public const string Logout = Base + "/Logout";
         }
+
+        public static class Recovery
+        {
+            public const string ForgotPassword = Base + "/ForgotPassword";
+        }
     }
 }
