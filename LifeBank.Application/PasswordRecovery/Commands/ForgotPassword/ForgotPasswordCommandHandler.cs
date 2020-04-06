@@ -1,6 +1,5 @@
 ﻿using LifeBank.Application.Common.Interfaces;
 using MediatR;
-using Microsoft.AspNetCore.Identity;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -22,7 +21,7 @@ namespace LifeBank.Application.PasswordRecovery.Commands.ForgotPassword
 
             if (user != null)
             {
-                var token =  await userManagerService.GeneratePasswordUserTokenAsync(user);
+                var token = await userManagerService.GeneratePasswordUserTokenAsync(user);
                 return token;
             }
 

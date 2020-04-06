@@ -55,5 +55,14 @@ namespace LifeBank.Infrastructure.Identity
         {
             return await userManager.GeneratePasswordResetTokenAsync((ApplicationUser)user);
         }
+
+        public async Task<Result> ResetPasswordAsync(object user, string token, string password)
+        {
+            var result = await userManager.ResetPasswordAsync((ApplicationUser)user, token, password);
+
+            // TODO: send email with link and token
+
+            return result.ToApplicationResult();
+        }
     }
 }

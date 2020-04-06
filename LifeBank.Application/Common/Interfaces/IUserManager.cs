@@ -13,5 +13,7 @@ namespace LifeBank.Application.Common.Interfaces
         Task<Object> FindUserByEmailAsync(string email);
 
         Task<String> GeneratePasswordUserTokenAsync(Object user);
+
+        Task<Result> ResetPasswordAsync(object user, string token, string password);
     }
 }

@@ -1,4 +1,5 @@
-﻿using LifeBank.Application.PasswordRecovery.Commands.ForgotPassword;
+﻿using LifeBank.Api.Routes.Version1;
+using LifeBank.Application.PasswordRecovery.Commands.ForgotPassword;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -16,6 +17,7 @@ namespace LifeBank.Api.Controllers.Version1
             this.mediator = mediator;
         }
 
+        [HttpPost(ApiRoutes.Recovery.ForgotPassword)]
         public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordViewModel viewModel)
         {
             var command = new ForgotPasswordCommand(viewModel);
@@ -23,7 +25,7 @@ namespace LifeBank.Api.Controllers.Version1
 
             if (result != null) // to be refactored into command handler
             {
-                var passwordResetLink = Url.Action("ResetPassword", "Recovery", 
+                var passwordResetLink = Url.Action("ResetPassword", "Recovery",
                     new { email = viewModel.Email, token = result }, Request.Scheme);
             }
 

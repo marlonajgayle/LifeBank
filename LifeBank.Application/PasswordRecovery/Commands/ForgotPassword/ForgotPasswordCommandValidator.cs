@@ -9,6 +9,6 @@ namespace LifeBank.Application.PasswordRecovery.Commands.ForgotPassword
             RuleFor(v => v.Email)
                 .NotEmpty()
                 .EmailAddress();
-        } 
+        }
     }
 }

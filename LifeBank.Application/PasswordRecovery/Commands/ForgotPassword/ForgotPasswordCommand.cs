@@ -1,5 +1,4 @@
 ﻿using MediatR;
-using Microsoft.AspNetCore.Identity;
 using System;
 
 namespace LifeBank.Application.PasswordRecovery.Commands.ForgotPassword

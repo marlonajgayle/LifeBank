@@ -1,5 +1,4 @@
-﻿using LifeBank.Application.Common.Interfaces;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 
 namespace LifeBank.Infrastructure.Identity
 {
