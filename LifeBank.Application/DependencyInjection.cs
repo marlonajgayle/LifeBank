@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using LifeBank.Application.Common.Behaviours;
 using LifeBank.Infrastructure.HealthChecks;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
@@ -16,6 +17,7 @@ namespace LifeBank.Infrastructure
 
             // Register MediatR 
             services.AddMediatR(Assembly.GetExecutingAssembly());
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehaviour<,>));
 
             // Register AutoMapper
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
