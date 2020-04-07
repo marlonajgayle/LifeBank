@@ -1,4 +1,5 @@
-﻿using LifeBank.Infrastructure.Identity;
+﻿using LifeBank.Application.Common.Interfaces;
+using LifeBank.Infrastructure.Identity;
 using LifeBank.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -24,6 +25,7 @@ namespace LifeBank.Infrastructure
                 options.Password.RequireUppercase = true;
             }).AddEntityFrameworkStores<LifeBankDbContext>();
 
+            services.AddTransient<IMailService, MailService>();
             return services;
         }
     }

@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29911.84
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LifeBank.Domain", "LifeBank.Domain\LifeBank.Domain.csproj", "{2D792199-F97D-47CB-A9C4-62819158C52D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LifeBank.Domain", "LifeBank.Domain\LifeBank.Domain.csproj", "{2D792199-F97D-47CB-A9C4-62819158C52D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LifeBank.Application", "LifeBank.Application\LifeBank.Application.csproj", "{073058E9-C482-4FCD-B7BF-6E430C36AE66}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LifeBank.Application", "LifeBank.Application\LifeBank.Application.csproj", "{073058E9-C482-4FCD-B7BF-6E430C36AE66}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LifeBank.Infrastructure", "LifeBank.Infrastructure\LifeBank.Infrastructure.csproj", "{17EEEA23-92E5-45FA-84A9-2F2BFAFFF416}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LifeBank.Infrastructure", "LifeBank.Infrastructure\LifeBank.Infrastructure.csproj", "{17EEEA23-92E5-45FA-84A9-2F2BFAFFF416}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LifeBank.UnitTests", "LifeBank.UnitTests\LifeBank.UnitTests.csproj", "{56F7FB80-D09E-4158-BB0E-9C1EC1B4DAF6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LifeBank.UnitTests", "LifeBank.UnitTests\LifeBank.UnitTests.csproj", "{56F7FB80-D09E-4158-BB0E-9C1EC1B4DAF6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LifeBank.Api", "LifeBank.Api\LifeBank.Api.csproj", "{25C3B104-2DDC-4A8D-9AF3-92FF1FB2B88D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LifeBank.Api", "LifeBank.Api\LifeBank.Api.csproj", "{25C3B104-2DDC-4A8D-9AF3-92FF1FB2B88D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2367CB59-18FD-4C7C-8483-120CF3682248}"
 	ProjectSection(SolutionItems) = preProject
