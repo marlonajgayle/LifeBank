@@ -15,12 +15,14 @@ namespace LifeBank.Infrastructure
             services.AddHealthChecks()
                 .AddCheck<ApplicationHealthCheck>(name: "LifeBank API");
 
+            // Register AutoMapper
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
+
             // Register MediatR 
             services.AddMediatR(Assembly.GetExecutingAssembly());
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehaviour<,>));
 
-            // Register AutoMapper
-            services.AddAutoMapper(Assembly.GetExecutingAssembly());
+           
 
             return services;
         }

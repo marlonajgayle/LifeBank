@@ -14,8 +14,15 @@ namespace LifeBank.Infrastructure
         public static IServiceCollection AddInfrastructure(this IServiceCollection services,
             IConfiguration configuration, IWebHostEnvironment environment)
         {
+
+            services.AddScoped<IUserManager, UserManagerService>();
+            services.AddScoped<ISignInManager, SignInManagerService>();
+            services.AddTransient<IMailService, MailService>();
+
             services.AddDbContextPool<LifeBankDbContext>(
                 options => options.UseSqlServer(configuration.GetConnectionString("LifeBankDbConnection")));
+
+            services.AddScoped<ILifeBankDbContext>(provider => provider.GetService<LifeBankDbContext>());
 
             services.AddIdentity<ApplicationUser, IdentityRole>(options =>
             {
@@ -25,7 +32,8 @@ namespace LifeBank.Infrastructure
                 options.Password.RequireUppercase = true;
             }).AddEntityFrameworkStores<LifeBankDbContext>();
 
-            services.AddTransient<IMailService, MailService>();
+            
+
             return services;
         }
     }

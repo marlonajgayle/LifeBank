@@ -16,7 +16,7 @@ namespace LifeBank.Infrastructure.Identity
             this.userManager = userManager;
         }
 
-        public async Task<object> ChangePasswordAsync(object user, string currentPassword, string newPassword)
+        public async Task<IdentityResult> ChangePasswordAsync(object user, string currentPassword, string newPassword)
         {
             return await userManager.ChangePasswordAsync((ApplicationUser)user, currentPassword, newPassword);
         }
@@ -75,5 +75,7 @@ namespace LifeBank.Infrastructure.Identity
 
             return result.ToApplicationResult();
         }
+
+       
     }
 }
