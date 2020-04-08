@@ -31,5 +31,10 @@
         {
             public const string ForgotPassword = Base + "/ForgotPassword";
         }
+
+        public static class Change
+        {
+            public const string Password = Base + "/ChangePassword";
+        }
     }
 }

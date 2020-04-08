@@ -2,6 +2,7 @@
 using LifeBank.Application.Common.Models;
 using Microsoft.AspNetCore.Identity;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace LifeBank.Infrastructure.Identity
@@ -13,6 +14,11 @@ namespace LifeBank.Infrastructure.Identity
         public UserManagerService(UserManager<ApplicationUser> userManager)
         {
             this.userManager = userManager;
+        }
+
+        public async Task<object> ChangePasswordAsync(object user, string currentPassword, string newPassword)
+        {
+            return await userManager.ChangePasswordAsync((ApplicationUser)user, currentPassword, newPassword);
         }
 
         public async Task<(Result Result, string UserId)> CreateUserAsync(string userName, string password)
@@ -54,6 +60,11 @@ namespace LifeBank.Infrastructure.Identity
         public async Task<string> GeneratePasswordUserTokenAsync(object user)
         {
             return await userManager.GeneratePasswordResetTokenAsync((ApplicationUser)user);
+        }
+
+        public async Task<object> GetUserAsync(object user)
+        {
+            return await userManager.GetUserAsync((ClaimsPrincipal)user);
         }
 
         public async Task<Result> ResetPasswordAsync(object user, string token, string password)
