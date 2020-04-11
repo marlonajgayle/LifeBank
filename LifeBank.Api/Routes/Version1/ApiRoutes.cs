@@ -3,8 +3,8 @@
     public static class ApiRoutes
     {
         public const string Domain = "api";
-        public const string Verion = "v1";
-        public const string Base = "${api}/${Version}";
+        public const string Version = "v1";
+        public const string Base = Domain + "/" + Version;
 
         public static class Donors
         {
@@ -14,6 +14,15 @@
             public const string Update = Base + "/donors/{donorId}";
             public const string Delete = Base + "/donors/{donorId}";
 
+        }
+
+        public static class Donations
+        {
+            public const string Create = Base + "/donations";
+            public const string Get = Base + "/donations/{donationId}";
+            public const string GetAll = Base + "/donations";
+            public const string Update = Base + "/donations/{donationId}";
+            public const string Delete = Base + "/donations/{donationId}";
         }
 
         public static class Registration

@@ -32,7 +32,7 @@ namespace LifeBank.Infrastructure
                 options.Password.RequireUppercase = true;
             }).AddEntityFrameworkStores<LifeBankDbContext>();
 
-            
+
 
             return services;
         }

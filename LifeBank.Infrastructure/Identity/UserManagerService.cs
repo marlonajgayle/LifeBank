@@ -76,6 +76,6 @@ namespace LifeBank.Infrastructure.Identity
             return result.ToApplicationResult();
         }
 
-       
+
     }
 }

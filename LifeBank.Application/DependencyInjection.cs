@@ -22,7 +22,7 @@ namespace LifeBank.Infrastructure
             services.AddMediatR(Assembly.GetExecutingAssembly());
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehaviour<,>));
 
-           
+
 
             return services;
         }

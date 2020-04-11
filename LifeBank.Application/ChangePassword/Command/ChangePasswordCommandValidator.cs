@@ -2,7 +2,7 @@
 
 namespace LifeBank.Application.ChangePassword.Command
 {
-    public class ChangePasswordCommandValidator :AbstractValidator<ChangePasswordCommand>
+    public class ChangePasswordCommandValidator : AbstractValidator<ChangePasswordCommand>
     {
         public ChangePasswordCommandValidator()
         {
