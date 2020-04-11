@@ -5,12 +5,12 @@ using LifeBank.Application.Donors.Models;
 using LifeBank.Application.Donors.Queries;
 using LifeBank.Application.Donors.Queries.GetDonorsList;
 using MediatR;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
 namespace LifeBank.Api.Controllers.Version1
 {
-    [Route("api/[controller]")]
     [ApiController]
     public class DonorController : ControllerBase
     {
@@ -21,6 +21,13 @@ namespace LifeBank.Api.Controllers.Version1
             this.mediator = mediator;
         }
 
+        /// <summary>
+        /// Retrieves a Donor by provided Id
+        /// </summary>
+        /// <response code="201">Retrieves a Donor by provided Id</response>
+        /// <response code="400">Unable to retrieve Donor due to validation error</response>
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [HttpGet(ApiRoutes.Donors.Get)]
         public async Task<IActionResult> GetDonor(long donorId)
         {
@@ -30,6 +37,13 @@ namespace LifeBank.Api.Controllers.Version1
             return result != null ? (IActionResult)Ok(result) : NotFound();
         }
 
+        /// <summary>
+        /// Creates a New Donor
+        /// </summary>
+        /// <response code="201">Creates a New Donor</response>
+        /// <response code="400">Unable to create Donor due to validation error</response>
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [HttpPost(ApiRoutes.Donors.Create)]
         public async Task<IActionResult> CreateDonor([FromBody] DonorViewModel donor)
         {

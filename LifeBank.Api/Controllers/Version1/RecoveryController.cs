@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace LifeBank.Api.Controllers.Version1
 {
-    [Route("api/[controller]")]
     [ApiController]
     public class RecoveryController : ControllerBase
     {

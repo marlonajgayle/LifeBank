@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace LifeBank.Api.Controllers.Version1
 {
-    [Route("api/[controller]")]
     [ApiController]
     public class ChangePasswordController : ControllerBase
     {
@@ -21,7 +20,7 @@ namespace LifeBank.Api.Controllers.Version1
         public async Task<IActionResult> ChangePassword([FromBody] ChangePasswordViewModel ViewModel)
         {
             var command = new ChangePasswordCommand(ViewModel, User);
-            var result = mediator.Send(command);
+            var result = await mediator.Send(command);
 
             return Ok(result);
         }
