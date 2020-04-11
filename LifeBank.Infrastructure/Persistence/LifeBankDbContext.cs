@@ -26,9 +26,11 @@ namespace LifeBank.Infrastructure.Persistence
             CurrentUserService = currentUserService;
         }
 
-
         public DbSet<Donor> Donors { get; set; }
         public DbSet<Donation> Donoations { get; set; }
+        public DbSet<Appointment> Appointments { get; set; }
+        public DbSet<Location> Locations { get; set; }
+
         public ICurrentUserService CurrentUserService { get; }
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
