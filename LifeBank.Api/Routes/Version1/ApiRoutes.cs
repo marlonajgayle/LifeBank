@@ -25,6 +25,15 @@
             public const string Delete = Base + "/donations/{donationId}";
         }
 
+        public static class Appointments
+        {
+            public const string Create = Base + "/appointments";
+            public const string Get = Base + "/appointments/{appointmentId}";
+            public const string GetAll = Base + "/appointments";
+            public const string Update = Base + "/appointments/{appointmentId}";
+            public const string Delete = Base + "/appointments/{appointmentId}";
+        }
+
         public static class Registration
         {
             public const string Register = Base + "/register";
