@@ -17,7 +17,7 @@ namespace LifeBank.Application.Donations.Commands.UpdateDonation
 
         public async Task<Unit> Handle(UpdateDonationCommand request, CancellationToken cancellationToken)
         {
-            var entity = await dbContext.Donoations.FindAsync(request.DonationId);
+            var entity = await dbContext.Donations.FindAsync(request.DonationId);
 
             if (entity != null)
             {

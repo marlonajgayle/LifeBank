@@ -24,7 +24,7 @@ namespace LifeBank.Application.Donations.Queries.GetDonationsByDonor
 
         public async Task<List<DonationViewModel>> Handle(GetDonationsByDonorIdQuery request, CancellationToken cancellationToken)
         {
-            var entities = await dbContext.Donoations
+            var entities = await dbContext.Donations
                 .Where(x => x.DonorId == request.DonorId)
                 .ProjectTo<DonationViewModel>(mapper.ConfigurationProvider)
                 .ToListAsync(cancellationToken);

@@ -16,11 +16,11 @@ namespace LifeBank.Application.Donations.Commands.DeleteDonation
 
         public async Task<int> Handle(DeleteDonationCommand request, CancellationToken cancellationToken)
         {
-            var entity = await dbContext.Donoations.FindAsync(request.DonationId);
+            var entity = await dbContext.Donations.FindAsync(request.DonationId);
 
             if (entity != null)
             {
-                dbContext.Donoations.Remove(entity);
+                dbContext.Donations.Remove(entity);
                 return await dbContext.SaveChangesAsync(cancellationToken);
             }
             else

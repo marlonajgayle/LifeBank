@@ -1,5 +1,4 @@
 ﻿using LifeBank.Application.Common.Interfaces;
-using LifeBank.Domain.Entities;
 using MediatR;
 using System;
 using System.Threading;
@@ -18,7 +17,7 @@ namespace LifeBank.Application.Appointments.Commands.UpdateAppointment
 
         public async Task<int> Handle(UpdateAppointmentCommand request, CancellationToken cancellationToken)
         {
-            var entity =  await dbContext.Appointments.FindAsync(request.AppointmentId);
+            var entity = await dbContext.Appointments.FindAsync(request.AppointmentId);
 
             if (entity != null)
             {

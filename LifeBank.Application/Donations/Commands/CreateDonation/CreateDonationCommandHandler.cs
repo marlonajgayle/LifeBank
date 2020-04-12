@@ -24,7 +24,7 @@ namespace LifeBank.Application.Donations.Commands.CreateDonation
                 DonationDate = request.DonationDate
             };
 
-            dbContext.Donoations.Add(entity);
+            dbContext.Donations.Add(entity);
 
             var response = await dbContext.SaveChangesAsync(cancellationToken);
 

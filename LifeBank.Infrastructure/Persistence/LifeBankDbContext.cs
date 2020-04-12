@@ -27,7 +27,7 @@ namespace LifeBank.Infrastructure.Persistence
         }
 
         public DbSet<Donor> Donors { get; set; }
-        public DbSet<Donation> Donoations { get; set; }
+        public DbSet<Donation> Donations { get; set; }
         public DbSet<Appointment> Appointments { get; set; }
         public DbSet<Location> Locations { get; set; }
 
