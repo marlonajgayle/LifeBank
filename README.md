@@ -14,6 +14,8 @@ You will need the following tools:
 * .NET Core 3.1 (LTS)
 * ASP.NET Core 3
 * Entity Framework Core 3
+* Fluent Validation
+* MediatR
 
 ## Versions
 The [master](https://github.com/marlonajgayle/LifeBank/master) branch is running .NET Core 3.1
