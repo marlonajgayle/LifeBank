@@ -1,4 +1,5 @@
 ﻿using LifeBank.Application.Common.Interfaces;
+using LifeBank.Application.DataSeeding.Commands;
 using LifeBank.Domain.Common;
 using LifeBank.Domain.Entities;
 using LifeBank.Infrastructure.Identity;
@@ -58,6 +59,9 @@ namespace LifeBank.Infrastructure.Persistence
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.SeedParishData();
+            modelBuilder.SeedBloodTypeData();
         }
     }
 }
