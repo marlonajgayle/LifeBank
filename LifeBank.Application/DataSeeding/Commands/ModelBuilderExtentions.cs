@@ -76,7 +76,6 @@ namespace LifeBank.Application.DataSeeding.Commands
                     }
                 );
         }
-
         public static void SeedBloodTypeData(this ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<BloodType>().HasData(
