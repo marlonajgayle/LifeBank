@@ -7,6 +7,6 @@ namespace LifeBank.Application.Common.Interfaces
     {
         Task<SignInResult> LoginAsync(string userName, string password);
 
-        void LogoutAsync();
+        Task<int> LogoutAsync();
     }
 }

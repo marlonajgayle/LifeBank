@@ -16,7 +16,7 @@ namespace LifeBank.Application.Authentication.Command.Logout
 
         public async Task<Unit> Handle(LogoutCommand request, CancellationToken cancellationToken)
         {
-            signInManager.LogoutAsync();
+            await signInManager.LogoutAsync();
 
             return Unit.Value;
         }

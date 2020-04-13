@@ -20,9 +20,10 @@ namespace LifeBank.Infrastructure.Identity
             return result;
         }
 
-        public async void LogoutAsync()
+        public async Task<int> LogoutAsync()
         {
             await signInManager.SignOutAsync();
+            return 0;
         }
     }
 }
