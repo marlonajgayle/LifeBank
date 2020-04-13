@@ -13,7 +13,7 @@ namespace LifeBank.Application.Donors.Commands.UpdateDonor
         public string LastName { get; set; }
         public string Gender { get; set; }
         public DateTime DateOfBirth { get; set; }
-        public string BloodType { get; set; }
+        public int BloodTypeId { get; set; }
         public ICollection<Donation> Donations { get; set; }
     }
 }

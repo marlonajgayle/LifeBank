@@ -7,6 +7,7 @@ namespace LifeBank.Domain.Entities
     {
         public long DonationId { get; set; }
         public long DonorId { get; set; }
+        public Donor Donor { get; set; }
         public int UnitsOfBlood { get; set; }
         public DateTime DonationDate { get; set; }
     }

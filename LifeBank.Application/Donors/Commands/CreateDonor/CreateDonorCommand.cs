@@ -14,7 +14,7 @@ namespace LifeBank.Application.Donors.Commands.CreateDonor
         public string LastName { get; set; }
         public string Gender { get; set; }
         public DateTime DateOfBirth { get; set; }
-        public string BloodType { get; set; }
+        public int BloodTypeId { get; set; }
         public ICollection<Donation> Donations { get; set; }
 
         public CreateDonorCommand(DonorViewModel donorViewModel)
@@ -24,7 +24,7 @@ namespace LifeBank.Application.Donors.Commands.CreateDonor
             LastName = donorViewModel.LastName;
             Gender = donorViewModel.Gender;
             DateOfBirth = donorViewModel.DateOfBirth;
-            BloodType = donorViewModel.BloodType;
+            BloodTypeId = donorViewModel.BloodTypeId;
         }
     }
 }

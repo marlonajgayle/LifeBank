@@ -10,7 +10,7 @@ namespace LifeBank.Application.Donors.Commands.CreateDonor
             RuleFor(v => v.LastName).MaximumLength(30).NotEmpty();
             RuleFor(v => v.Gender).NotEmpty();
             RuleFor(v => v.DateOfBirth).NotEmpty();
-            RuleFor(v => v.BloodType).Length(3).NotEmpty();
+            RuleFor(v => v.BloodTypeId).NotEmpty();
         }
     }
 }

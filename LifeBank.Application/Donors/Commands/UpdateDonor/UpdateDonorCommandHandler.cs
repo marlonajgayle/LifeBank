@@ -26,7 +26,7 @@ namespace LifeBank.Application.Donors.Commands.UpdateDonor
                 entity.LastName = request.LastName;
                 entity.Gender = request.Gender;
                 entity.DateOfBirth = request.DateOfBirth;
-                entity.BloodType = request.BloodType;
+                entity.BloodTypeId = request.BloodTypeId;
 
                 await dbContext.SaveChangesAsync(cancellationToken);
             }

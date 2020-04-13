@@ -19,7 +19,7 @@ namespace LifeBank.Infrastructure
             services.AddScoped<ISignInManager, SignInManagerService>();
             services.AddTransient<IMailService, MailService>();
 
-            services.AddDbContextPool<LifeBankDbContext>(
+            services.AddDbContext<LifeBankDbContext>(
                 options => options.UseSqlServer(configuration.GetConnectionString("LifeBankDbConnection")));
 
             services.AddScoped<ILifeBankDbContext>(provider => provider.GetService<LifeBankDbContext>());

@@ -30,6 +30,8 @@ namespace LifeBank.Infrastructure.Persistence
         public DbSet<Donation> Donations { get; set; }
         public DbSet<Appointment> Appointments { get; set; }
         public DbSet<Location> Locations { get; set; }
+        public DbSet<BloodType> BloodTypes { get; set; }
+        public DbSet<Parish> Parishes { get; set; }
 
         public ICurrentUserService CurrentUserService { get; }
 

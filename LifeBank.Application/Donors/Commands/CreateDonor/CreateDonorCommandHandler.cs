@@ -29,7 +29,7 @@ namespace LifeBank.Application.Donors.Commands.CreateDonor
                 LastName = request.LastName,
                 Gender = request.Gender,
                 DateOfBirth = request.DateOfBirth,
-                BloodType = request.BloodType
+                BloodTypeId = request.BloodTypeId
             };
 
             DbContext.Donors.Add(entity);
