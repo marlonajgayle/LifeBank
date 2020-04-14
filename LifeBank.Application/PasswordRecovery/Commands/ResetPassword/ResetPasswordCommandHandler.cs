@@ -1,7 +1,7 @@
-﻿using LifeBank.Application.Common.Interfaces;
+﻿using LifeBank.Application.Common.Exceptions;
+using LifeBank.Application.Common.Interfaces;
 using LifeBank.Application.Common.Models;
 using MediatR;
-using System;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -28,7 +28,7 @@ namespace LifeBank.Application.PasswordRecovery.Commands.ResetPassword
             }
             else
             {
-                throw new Exception();
+                throw new NotFoundException("User", request.Email);
             }
         }
     }

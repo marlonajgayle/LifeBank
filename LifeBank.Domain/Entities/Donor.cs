@@ -14,7 +14,7 @@ namespace LifeBank.Domain.Entities
         public DateTime DateOfBirth { get; set; }
         public int BloodTypeId { get; set; }
         public BloodType BloodType { get; set; }
-        public ICollection<Donation> Donations { get; private set; } 
+        public ICollection<Donation> Donations { get; private set; }
         public ICollection<Appointment> Appointments { get; set; }
 
         public Donor()

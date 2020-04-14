@@ -1,6 +1,7 @@
-﻿using LifeBank.Application.Common.Interfaces;
+﻿using LifeBank.Application.Common.Exceptions;
+using LifeBank.Application.Common.Interfaces;
+using LifeBank.Domain.Entities;
 using MediatR;
-using System;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -30,8 +31,7 @@ namespace LifeBank.Application.Appointments.Commands.UpdateAppointment
             }
             else
             {
-                //throw new NotFoundException(nameof(Appointment), request.AppointmentId);
-                throw new Exception();
+                throw new NotFoundException(nameof(Appointment), request.AppointmentId);
             }
 
         }

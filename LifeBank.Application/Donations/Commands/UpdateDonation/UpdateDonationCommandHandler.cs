@@ -1,4 +1,6 @@
-﻿using LifeBank.Application.Common.Interfaces;
+﻿using LifeBank.Application.Common.Exceptions;
+using LifeBank.Application.Common.Interfaces;
+using LifeBank.Domain.Entities;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
@@ -29,7 +31,7 @@ namespace LifeBank.Application.Donations.Commands.UpdateDonation
             }
             else
             {
-                throw new System.Exception();
+                throw new NotFoundException(nameof(Donation), request.DonationId);
             }
 
             return Unit.Value;

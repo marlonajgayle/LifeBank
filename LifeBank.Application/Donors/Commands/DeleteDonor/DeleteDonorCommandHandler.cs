@@ -1,6 +1,7 @@
-﻿using LifeBank.Application.Common.Interfaces;
+﻿using LifeBank.Application.Common.Exceptions;
+using LifeBank.Application.Common.Interfaces;
+using LifeBank.Domain.Entities;
 using MediatR;
-using System;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -27,7 +28,7 @@ namespace LifeBank.Application.Donors.Commands.DeleteDonor
             }
             else
             {
-                throw new Exception();
+                throw new NotFoundException(nameof(Donor), request.DonorId);
             }
 
 

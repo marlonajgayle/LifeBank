@@ -80,9 +80,9 @@ namespace LifeBank.Application.DataSeeding.Commands
         {
             modelBuilder.Entity<BloodType>().HasData(
                     new BloodType()
-                    { 
+                    {
                         BloodTypeId = 1,
-                        BloodGroup = "O-"                    
+                        BloodGroup = "O-"
                     }, new BloodType()
                     {
                         BloodTypeId = 2,
