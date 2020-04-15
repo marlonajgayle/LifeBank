@@ -21,9 +21,9 @@ namespace LifeBank.Api.Controllers.Version1
         /// Change Donor Password
         /// </summary>
         /// <response code="204">Change Donor Password</response>
-        /// <response code="404">Unable to change  Donor password due to invalid current password</response>
+        /// <response code="401">Unable to change Donor password due to invalid current password</response>
         [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [HttpPost(ApiRoutes.Change.Password)]
         public async Task<IActionResult> ChangePassword([FromBody] ChangePasswordViewModel ViewModel)
         {

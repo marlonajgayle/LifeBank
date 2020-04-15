@@ -23,6 +23,7 @@ namespace LifeBank.Application.PasswordRecovery.Commands.ForgotPassword
             {
                 var token = await userManagerService.GeneratePasswordUserTokenAsync(user);
                 return token;
+                // TODO: send email notification
             }
 
             return String.Empty;

@@ -1,4 +1,5 @@
 ﻿using LifeBank.Api.Routes.Version1;
+using LifeBank.Application.Common.Interfaces;
 using LifeBank.Application.Donations.Commands.CreateDonation;
 using LifeBank.Application.Donations.Commands.DeleteDonation;
 using LifeBank.Application.Donations.Commands.UpdateDonation;
@@ -18,10 +19,12 @@ namespace LifeBank.Api.Controllers.Version1
     public class DonationsController : ControllerBase
     {
         private readonly IMediator mediator;
+        private readonly IUriService uriService;
 
-        public DonationsController(IMediator mediator)
+        public DonationsController(IMediator mediator, IUriService uriService)
         {
             this.mediator = mediator;
+            this.uriService = uriService;
         }
 
         /// <summary>
@@ -54,8 +57,7 @@ namespace LifeBank.Api.Controllers.Version1
             var command = new CreateDonationCommand(viewModel);
             var result = await mediator.Send(command);
 
-            var baseUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host.ToUriComponent()}";
-            var locationUri = baseUrl + "/" + ApiRoutes.Donors.Get.Replace("{donorId}", result.DonationId.ToString());
+            var locationUri = uriService.GetDonationUri(ApiRoutes.Donations.Get, result.DonationId.ToString());
 
             return CreatedAtAction("CreateDonation", result);
         }

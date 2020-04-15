@@ -5,6 +5,7 @@ using LifeBank.Application.Appointments.Commands.UpdateAppointment;
 using LifeBank.Application.Appointments.Models;
 using LifeBank.Application.Appointments.Queries.GetAppointmentDetails;
 using LifeBank.Application.Appointments.Queries.GetAppointmentList;
+using LifeBank.Application.Common.Interfaces;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -16,10 +17,12 @@ namespace LifeBank.Api.Controllers.Version1
     public class AppointmentsController : ControllerBase
     {
         private readonly IMediator mediator;
+        private readonly IUriService uriService;
 
-        public AppointmentsController(IMediator mediator)
+        public AppointmentsController(IMediator mediator, IUriService uriService)
         {
             this.mediator = mediator;
+            this.uriService = uriService;
         }
 
         /// <summary>
@@ -51,10 +54,9 @@ namespace LifeBank.Api.Controllers.Version1
             var command = new CreateAppointmentCommand(viewModel);
             var result = await mediator.Send(command);
 
-            var baseUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host.ToUriComponent()}";
-            var locationUri = baseUrl + "/" + ApiRoutes.Donors.Get.Replace("{appointmentId}", result.AppointmentId.ToString());
-
-            return CreatedAtAction("CreateAppointment", result);
+            var locationUri = uriService.GetAppointmentUri(ApiRoutes.Appointments.Get, result.AppointmentId.ToString());
+            
+            return CreatedAtAction("locationUri", result);
         }
 
         /// <summary>

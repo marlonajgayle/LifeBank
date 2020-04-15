@@ -2,6 +2,7 @@
 using LifeBank.Infrastructure.Identity;
 using LifeBank.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -18,6 +19,14 @@ namespace LifeBank.Infrastructure
             services.AddScoped<IUserManager, UserManagerService>();
             services.AddScoped<ISignInManager, SignInManagerService>();
             services.AddTransient<IMailService, MailService>();
+
+            services.AddSingleton<IUriService>(provider =>
+            {
+                var accessor = provider.GetRequiredService<IHttpContextAccessor>();
+                var request = accessor.HttpContext.Request;
+                var absoluteUri = string.Concat(request.Scheme, "://", request.Host.ToUriComponent(), "/");
+                return new UriService(absoluteUri);
+            });
 
             services.AddDbContext<LifeBankDbContext>(
                 options => options.UseSqlServer(configuration.GetConnectionString("LifeBankDbConnection")));
