@@ -101,7 +101,7 @@ namespace LifeBank.Api.Controllers.Version1
         public async Task<IActionResult> DeleteDonor([FromRoute]long donorId)
         {
             var command = new DeleteDonorCommand(donorId);
-            var result = await mediator.Send(command);
+            await mediator.Send(command);
 
             return NoContent();
         }

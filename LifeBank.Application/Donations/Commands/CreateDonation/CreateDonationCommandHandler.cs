@@ -1,4 +1,6 @@
-﻿using LifeBank.Application.Common.Interfaces;
+﻿using AutoMapper;
+using LifeBank.Application.Common.Interfaces;
+using LifeBank.Application.Donations.Models;
 using LifeBank.Domain.Entities;
 using MediatR;
 using System.Threading;
@@ -6,16 +8,18 @@ using System.Threading.Tasks;
 
 namespace LifeBank.Application.Donations.Commands.CreateDonation
 {
-    public class CreateDonationCommandHandler : IRequestHandler<CreateDonationCommand, int>
+    public class CreateDonationCommandHandler : IRequestHandler<CreateDonationCommand, DonationViewModel>
     {
         private readonly ILifeBankDbContext dbContext;
+        private readonly IMapper mapper;
 
-        public CreateDonationCommandHandler(ILifeBankDbContext dbContext)
+        public CreateDonationCommandHandler(ILifeBankDbContext dbContext, IMapper mapper)
         {
             this.dbContext = dbContext;
+            this.mapper = mapper;
         }
 
-        public async Task<int> Handle(CreateDonationCommand request, CancellationToken cancellationToken)
+        public async Task<DonationViewModel> Handle(CreateDonationCommand request, CancellationToken cancellationToken)
         {
             var entity = new Donation()
             {
@@ -26,9 +30,9 @@ namespace LifeBank.Application.Donations.Commands.CreateDonation
 
             dbContext.Donations.Add(entity);
 
-            var response = await dbContext.SaveChangesAsync(cancellationToken);
+            await dbContext.SaveChangesAsync(cancellationToken);
 
-            return response;
+            return mapper.Map<DonationViewModel>(entity);
         }
     }
 }

@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
+using LifeBank.Application.Common.Exceptions;
 using LifeBank.Application.Common.Interfaces;
 using LifeBank.Application.Donations.Models;
+using LifeBank.Domain.Entities;
 using MediatR;
 using System;
 using System.Threading;
@@ -29,7 +31,7 @@ namespace LifeBank.Application.Donations.Queries.GetDonationDetails
             }
             else
             {
-                throw new Exception();
+                throw new NotFoundException(nameof(Donation), request.DonationId);
             }
         }
     }

@@ -2,7 +2,7 @@
 
 namespace LifeBank.Application.Donations.Commands.DeleteDonation
 {
-    public class DeleteDonationCommand : IRequest<int>
+    public class DeleteDonationCommand : IRequest
     {
         public long DonationId { get; set; }
 

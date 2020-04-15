@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LifeBank.Application.Donations.Commands.DeleteDonation
 {
-    public class DeleteDonationCommandHandler : IRequestHandler<DeleteDonationCommand, int>
+    public class DeleteDonationCommandHandler : IRequestHandler<DeleteDonationCommand, Unit>
     {
         private readonly ILifeBankDbContext dbContext;
 
@@ -16,19 +16,21 @@ namespace LifeBank.Application.Donations.Commands.DeleteDonation
             this.dbContext = dbContext;
         }
 
-        public async Task<int> Handle(DeleteDonationCommand request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(DeleteDonationCommand request, CancellationToken cancellationToken)
         {
             var entity = await dbContext.Donations.FindAsync(request.DonationId);
 
             if (entity != null)
             {
                 dbContext.Donations.Remove(entity);
-                return await dbContext.SaveChangesAsync(cancellationToken);
+                await dbContext.SaveChangesAsync(cancellationToken);
             }
             else
             {
                 throw new NotFoundException(nameof(Donation), request.DonationId);
             }
+
+            return Unit.Value;
         }
     }
 }
