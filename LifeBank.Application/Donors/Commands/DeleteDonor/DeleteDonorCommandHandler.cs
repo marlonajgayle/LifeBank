@@ -31,7 +31,6 @@ namespace LifeBank.Application.Donors.Commands.DeleteDonor
                 throw new NotFoundException(nameof(Donor), request.DonorId);
             }
 
-
             return Unit.Value;
         }
     }

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using LifeBank.Application.Common.Exceptions;
 using LifeBank.Application.Common.Interfaces;
 using LifeBank.Application.Donors.Models;
 using LifeBank.Domain.Entities;
@@ -24,6 +25,11 @@ namespace LifeBank.Application.Donors.Queries
         {
             Donor entity = await dBContext.Donors
                 .SingleOrDefaultAsync(x => x.DonorId == request.DonorId);
+
+            if (entity == null)
+            {
+                throw new NotFoundException(nameof(Donor), request.DonorId);
+            }
 
             return mapper.Map<DonorViewModel>(entity);
         }

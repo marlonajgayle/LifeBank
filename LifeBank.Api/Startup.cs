@@ -1,5 +1,6 @@
 using FluentValidation.AspNetCore;
 using LifeBank.Api.ConfigOptions;
+using LifeBank.Api.Filters;
 using LifeBank.Infrastructure;
 using LifeBank.Infrastructure.HealthChecks;
 using Microsoft.AspNetCore.Builder;
@@ -83,6 +84,9 @@ namespace LifeBank.Api
                 app.UseDeveloperExceptionPage();
             }
 
+            // Enable Middleware to handle custom exceptions
+            app.UseCustomExceptionHandler();
+
             // Enable Middelware to serve generated Swager as JSON endpoint
             var swaggerOptions = new SwaggerOptions();
             Configuration.GetSection(nameof(SwaggerOptions)).Bind(swaggerOptions);
@@ -98,6 +102,7 @@ namespace LifeBank.Api
             {
                 option.SwaggerEndpoint(swaggerOptions.UIEndpoint, swaggerOptions.Description);
             });
+
 
             // Enable Health Check Middleware
             app.UseHealthChecks("/health", new HealthCheckOptions

@@ -1,5 +1,7 @@
-﻿using LifeBank.Application.Common.Exceptions;
+﻿using AutoMapper;
+using LifeBank.Application.Common.Exceptions;
 using LifeBank.Application.Common.Interfaces;
+using LifeBank.Application.Donors.Models;
 using LifeBank.Domain.Entities;
 using MediatR;
 using System.Threading;
@@ -7,15 +9,17 @@ using System.Threading.Tasks;
 
 namespace LifeBank.Application.Donors.Commands.UpdateDonor
 {
-    public class UpdateDonorCommandHandler : IRequestHandler<UpdateDonorCommand, long>
+    public class UpdateDonorCommandHandler : IRequestHandler<UpdateDonorCommand, DonorViewModel>
     {
         private readonly ILifeBankDbContext dbContext;
+        private readonly IMapper mapper;
 
-        public UpdateDonorCommandHandler(ILifeBankDbContext dbContext)
+        public UpdateDonorCommandHandler(ILifeBankDbContext dbContext, IMapper mapper)
         {
             this.dbContext = dbContext;
+            this.mapper = mapper;
         }
-        public async Task<long> Handle(UpdateDonorCommand request, CancellationToken cancellationToken)
+        public async Task<DonorViewModel> Handle(UpdateDonorCommand request, CancellationToken cancellationToken)
         {
             // check to see if donor exist
             var entity = await dbContext.Donors.FindAsync(request.DonorId);
@@ -36,7 +40,7 @@ namespace LifeBank.Application.Donors.Commands.UpdateDonor
                 throw new NotFoundException(nameof(Donor), request.DonorId);
             }
 
-            return entity.DonorId;
+            return mapper.Map<DonorViewModel>(entity);
         }
     }
 }
