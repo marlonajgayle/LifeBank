@@ -1,4 +1,5 @@
-﻿using LifeBank.Application.Common.Interfaces;
+﻿using LifeBank.Application.Common.Exceptions;
+using LifeBank.Application.Common.Interfaces;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
@@ -20,7 +21,7 @@ namespace LifeBank.Application.Authentication.Command.Login
 
             if (!result.Succeeded)
             {
-                throw new System.Exception(); // Invalid login Exception
+                throw new BadRequestException("Invalid login"); 
             }
 
             return Unit.Value;
