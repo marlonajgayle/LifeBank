@@ -2,7 +2,7 @@
 
 namespace LifeBank.Application.Appointments.Commands.DeleteAppointment
 {
-    public class DeleteAppointmentCommand : IRequest<int>
+    public class DeleteAppointmentCommand : IRequest
     {
         public long AppointmentId;
 

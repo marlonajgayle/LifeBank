@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using LifeBank.Application.Appointments.Models;
+using LifeBank.Application.Common.Exceptions;
 using LifeBank.Application.Common.Interfaces;
+using LifeBank.Domain.Entities;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
@@ -28,7 +30,7 @@ namespace LifeBank.Application.Appointments.Queries.GetAppointmentDetails
             }
             else
             {
-                throw new System.Exception();
+                throw new NotFoundException(nameof(Appointment), request.AppointmentId);
             }
         }
     }

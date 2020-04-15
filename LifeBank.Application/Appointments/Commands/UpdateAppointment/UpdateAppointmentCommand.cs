@@ -6,18 +6,18 @@ using System;
 
 namespace LifeBank.Application.Appointments.Commands.UpdateAppointment
 {
-    public class UpdateAppointmentCommand : IRequest<int>
+    public class UpdateAppointmentCommand : IRequest<AppointmentViewModel>
     {
         public long AppointmentId { get; set; }
-        public Donor Donor { get; set; }
-        public Location Location { get; set; }
+        public long DonorId { get; set; }
+        public int LocationId { get; set; }
         public DateTime StartDate { get; set; }
         public AppointmentStatus Status { get; set; }
 
-        public UpdateAppointmentCommand(AppointmentViewModel viewModel)
+        public UpdateAppointmentCommand(long appointmentId, AppointmentViewModel viewModel)
         {
-            Donor = viewModel.Donor;
-            Location = viewModel.Location;
+            DonorId = viewModel.DonorId;
+            LocationId = viewModel.LocationId;
             StartDate = viewModel.StartDate;
             Status = viewModel.Status;
         }

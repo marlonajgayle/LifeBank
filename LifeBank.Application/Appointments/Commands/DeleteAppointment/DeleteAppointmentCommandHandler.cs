@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LifeBank.Application.Appointments.Commands.DeleteAppointment
 {
-    public class DeleteAppointmentCommandHandler : IRequestHandler<DeleteAppointmentCommand, int>
+    public class DeleteAppointmentCommandHandler : IRequestHandler<DeleteAppointmentCommand, Unit>
     {
         private readonly ILifeBankDbContext dbContext;
 
@@ -16,19 +16,21 @@ namespace LifeBank.Application.Appointments.Commands.DeleteAppointment
             this.dbContext = dbContext;
         }
 
-        public async Task<int> Handle(DeleteAppointmentCommand request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(DeleteAppointmentCommand request, CancellationToken cancellationToken)
         {
             var entity = await dbContext.Appointments.FindAsync(request.AppointmentId);
 
             if (entity != null)
             {
                 dbContext.Appointments.Remove(entity);
-                return await dbContext.SaveChangesAsync(cancellationToken);
+                await dbContext.SaveChangesAsync(cancellationToken);
             }
             else
             {
                 throw new NotFoundException(nameof(Appointment), request.AppointmentId);
             }
+
+            return Unit.Value;
         }
     }
 }

@@ -8,6 +8,7 @@ namespace LifeBank.Domain.Entities
         public long AppointmentId { get; set; }
         public long DonorId { get; set; }
         public Donor Donor { get; set; }
+        public int LocationId { get; set; }
         public Location Location { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
