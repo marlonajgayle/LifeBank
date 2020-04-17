@@ -2,6 +2,7 @@
 using LifeBank.Infrastructure.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
+using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using System.Net.Http;
 using Xunit;
@@ -15,7 +16,14 @@ namespace LifeBank.UnitTests.Application
 
         public ApplicationHealthCheckTests()
         {
+            // Specify Configuration
+            var configuration = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json")
+                .Build();
+
+            // Setup Test Server
             Server = new TestServer(new WebHostBuilder()
+                .UseConfiguration(configuration)
                 .UseStartup<Startup>());
 
             Client = Server.CreateClient();
