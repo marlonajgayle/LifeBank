@@ -1,11 +1,16 @@
-﻿using LifeBank.Api.Routes.Version1;
+﻿using AutoMapper;
+using LifeBank.Api.Contracts.Version1.Requests;
+using LifeBank.Api.Routes.Version1;
+using LifeBank.Api.Services;
 using LifeBank.Application.Common.Interfaces;
+using LifeBank.Application.Common.Models.Responses;
 using LifeBank.Application.Donations.Commands.CreateDonation;
 using LifeBank.Application.Donations.Commands.DeleteDonation;
 using LifeBank.Application.Donations.Commands.UpdateDonation;
 using LifeBank.Application.Donations.Models;
 using LifeBank.Application.Donations.Queries.GetDonationDetails;
 using LifeBank.Application.Donations.Queries.GetDonationsList;
+using LifeBank.Application.Pagination;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -20,11 +25,13 @@ namespace LifeBank.Api.Controllers.Version1
     {
         private readonly IMediator mediator;
         private readonly IUriService uriService;
+        private readonly IMapper mapper;
 
-        public DonationsController(IMediator mediator, IUriService uriService)
+        public DonationsController(IMediator mediator, IUriService uriService, IMapper mapper)
         {
             this.mediator = mediator;
             this.uriService = uriService;
+            this.mapper = mapper;
         }
 
         /// <summary>
@@ -67,13 +74,16 @@ namespace LifeBank.Api.Controllers.Version1
         /// </summary>
         /// <response code="200">Returns a list of Donations</response>
         [HttpGet(ApiRoutes.Donations.GetAll)]
-        public async Task<IActionResult> GetAll()
-
+        public async Task<IActionResult> GetAll([FromQuery] PaginationRequest paginationRequest)
         {
-            var query = new GetDonationsListQuery();
+            var paginationFilter = mapper.Map<PaginationFilter>(paginationRequest);
+            var query = new GetDonationsListQuery(paginationFilter);
             var result = await mediator.Send(query);
 
-            return Ok(result);
+            var pagedResponse = PaginationService
+                .CreatePaginatedResponse(uriService, paginationFilter, result);
+
+            return Ok(pagedResponse);
         }
 
         /// <summary>

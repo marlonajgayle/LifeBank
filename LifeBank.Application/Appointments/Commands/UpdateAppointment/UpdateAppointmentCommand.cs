@@ -1,5 +1,4 @@
 ﻿using LifeBank.Application.Appointments.Models;
-using LifeBank.Domain.Entities;
 using LifeBank.Domain.Enums;
 using MediatR;
 using System;

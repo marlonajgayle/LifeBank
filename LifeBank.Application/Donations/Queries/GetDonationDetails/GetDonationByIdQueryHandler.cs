@@ -4,7 +4,6 @@ using LifeBank.Application.Common.Interfaces;
 using LifeBank.Application.Donations.Models;
 using LifeBank.Domain.Entities;
 using MediatR;
-using System;
 using System.Threading;
 using System.Threading.Tasks;
 

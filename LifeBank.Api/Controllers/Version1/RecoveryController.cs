@@ -29,7 +29,7 @@ namespace LifeBank.Api.Controllers.Version1
             var command = new ForgotPasswordCommand(viewModel);
             var result = await mediator.Send(command);
 
-            if (!String.IsNullOrEmpty( result)) // to be refactored into command handler
+            if (!String.IsNullOrEmpty(result)) // to be refactored into command handler
             {
                 var passwordResetLink = Url.Action("ResetPassword", "Recovery",
                     new { email = viewModel.Email, token = result }, Request.Scheme);

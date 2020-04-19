@@ -1,4 +1,6 @@
 ﻿using LifeBank.Application.Common.Interfaces;
+using LifeBank.Application.Pagination;
+using Microsoft.AspNetCore.WebUtilities;
 using System;
 
 namespace LifeBank.Infrastructure
@@ -10,6 +12,19 @@ namespace LifeBank.Infrastructure
         public UriService(string baseUri)
         {
             this.baseUri = baseUri;
+        }
+
+        public Uri GetAllDonorsUri(PaginationFilter paginationFilter = null)
+        {
+            if (paginationFilter == null)
+            {
+                return new Uri(baseUri);
+            }
+
+            var modifiedUri = QueryHelpers.AddQueryString(baseUri, "Page", paginationFilter.Page.ToString());
+            modifiedUri = QueryHelpers.AddQueryString(baseUri, "Size", paginationFilter.Size.ToString());
+
+            return new Uri(modifiedUri);
         }
 
         public Uri GetAppointmentUri(string apiRoute, string appointmentId)

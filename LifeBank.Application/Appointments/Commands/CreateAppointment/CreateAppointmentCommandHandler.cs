@@ -23,7 +23,7 @@ namespace LifeBank.Application.Appointments.Commands.CreateAppointment
         {
             var entity = new Appointment()
             {
-                DonorId = request.DonorId ,
+                DonorId = request.DonorId,
                 LocationId = request.LocationId,
                 StartDate = request.StartDate,
                 EndDate = request.StartDate.AddMinutes(60)
@@ -31,7 +31,7 @@ namespace LifeBank.Application.Appointments.Commands.CreateAppointment
 
             dbContext.Appointments.Add(entity);
 
-             await dbContext.SaveChangesAsync(cancellationToken);
+            await dbContext.SaveChangesAsync(cancellationToken);
 
             return mapper.Map<AppointmentViewModel>(entity);
         }

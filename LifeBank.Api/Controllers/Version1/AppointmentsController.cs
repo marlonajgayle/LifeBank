@@ -1,4 +1,7 @@
-﻿using LifeBank.Api.Routes.Version1;
+﻿using AutoMapper;
+using LifeBank.Api.Contracts.Version1.Requests;
+using LifeBank.Api.Routes.Version1;
+using LifeBank.Api.Services;
 using LifeBank.Application.Appointments.Commands.CreateAppointment;
 using LifeBank.Application.Appointments.Commands.DeleteAppointment;
 using LifeBank.Application.Appointments.Commands.UpdateAppointment;
@@ -6,6 +9,8 @@ using LifeBank.Application.Appointments.Models;
 using LifeBank.Application.Appointments.Queries.GetAppointmentDetails;
 using LifeBank.Application.Appointments.Queries.GetAppointmentList;
 using LifeBank.Application.Common.Interfaces;
+using LifeBank.Application.Common.Models.Responses;
+using LifeBank.Application.Pagination;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -18,11 +23,13 @@ namespace LifeBank.Api.Controllers.Version1
     {
         private readonly IMediator mediator;
         private readonly IUriService uriService;
+        private readonly IMapper mapper;
 
-        public AppointmentsController(IMediator mediator, IUriService uriService)
+        public AppointmentsController(IMediator mediator, IUriService uriService, IMapper mapper)
         {
             this.mediator = mediator;
             this.uriService = uriService;
+            this.mapper = mapper;
         }
 
         /// <summary>
@@ -55,7 +62,7 @@ namespace LifeBank.Api.Controllers.Version1
             var result = await mediator.Send(command);
 
             var locationUri = uriService.GetAppointmentUri(ApiRoutes.Appointments.Get, result.AppointmentId.ToString());
-            
+
             return CreatedAtAction("locationUri", result);
         }
 
@@ -65,13 +72,17 @@ namespace LifeBank.Api.Controllers.Version1
         /// <response code="200">Returns a list of Appointments</response>
         [ProducesResponseType(StatusCodes.Status200OK)]
         [HttpGet(ApiRoutes.Appointments.GetAll)]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll([FromQuery] PaginationRequest paginationRequest)
 
         {
-            var query = new GetAppointmentsListQuery();
+            var paginationFilter = mapper.Map<PaginationFilter>(paginationRequest);
+            var query = new GetAppointmentsListQuery(paginationFilter);
             var result = await mediator.Send(query);
 
-            return Ok(result);
+            var pagedResponse = PaginationService
+                .CreatePaginatedResponse(uriService, paginationFilter, result);
+
+            return Ok(pagedResponse);
         }
 
         /// <summary>

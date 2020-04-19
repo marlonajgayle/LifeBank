@@ -5,6 +5,7 @@ using LifeBank.Application.Common.Interfaces;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -23,8 +24,11 @@ namespace LifeBank.Application.Appointments.Queries.GetAppointmentList
 
         public async Task<List<AppointmentViewModel>> Handle(GetAppointmentsListQuery request, CancellationToken cancellationToken)
         {
+            var skip = (request.PaginationFilter.Page - 1) * (request.PaginationFilter.Size);
             var entities = await dbContext.Appointments
                 .ProjectTo<AppointmentViewModel>(mapper.ConfigurationProvider)
+                .Skip(skip)
+                .Take(request.PaginationFilter.Size)
                 .ToListAsync();
 
             return entities;

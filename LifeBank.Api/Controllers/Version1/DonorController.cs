@@ -1,4 +1,7 @@
-﻿using LifeBank.Api.Routes.Version1;
+﻿using AutoMapper;
+using LifeBank.Api.Contracts.Version1.Requests;
+using LifeBank.Api.Routes.Version1;
+using LifeBank.Api.Services;
 using LifeBank.Application.Common.Interfaces;
 using LifeBank.Application.Donors.Commands.CreateDonor;
 using LifeBank.Application.Donors.Commands.DeleteDonor;
@@ -6,6 +9,7 @@ using LifeBank.Application.Donors.Commands.UpdateDonor;
 using LifeBank.Application.Donors.Models;
 using LifeBank.Application.Donors.Queries;
 using LifeBank.Application.Donors.Queries.GetDonorsList;
+using LifeBank.Application.Pagination;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -20,11 +24,13 @@ namespace LifeBank.Api.Controllers.Version1
     {
         private readonly IMediator mediator;
         private readonly IUriService uriService;
+        private readonly IMapper mapper;
 
-        public DonorController(IMediator mediator, IUriService uriService)
+        public DonorController(IMediator mediator, IUriService uriService, IMapper mapper)
         {
             this.mediator = mediator;
             this.uriService = uriService;
+            this.mapper = mapper;
         }
 
         /// <summary>
@@ -67,12 +73,16 @@ namespace LifeBank.Api.Controllers.Version1
         /// <response code="200">Returns a list of Donors</response>
         [ProducesResponseType(StatusCodes.Status200OK)]
         [HttpGet(ApiRoutes.Donors.GetAll)]
-        public async Task<IActionResult> GetDonors()
+        public async Task<IActionResult> GetDonors([FromQuery] PaginationRequest paginationRequest)
         {
-            var query = new GetDonorsListQuery();
+            var paginationFilter = mapper.Map<PaginationFilter>(paginationRequest);
+            var query = new GetDonorsListQuery(paginationFilter);
             var result = await mediator.Send(query);
 
-            return Ok(result);
+            var pagedResponse = PaginationService
+                .CreatePaginatedResponse(uriService, paginationFilter, result);
+
+            return Ok(pagedResponse);
         }
 
         /// <summary>

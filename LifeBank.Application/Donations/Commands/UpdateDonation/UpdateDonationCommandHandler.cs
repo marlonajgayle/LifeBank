@@ -6,7 +6,6 @@ using LifeBank.Domain.Entities;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
-using Unit = MediatR.Unit;
 
 namespace LifeBank.Application.Donations.Commands.UpdateDonation
 {

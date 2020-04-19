@@ -4,6 +4,7 @@ using LifeBank.Application.Donors.Models;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -22,7 +23,13 @@ namespace LifeBank.Application.Donors.Queries.GetDonorsList
 
         public async Task<List<DonorViewModel>> Handle(GetDonorsListQuery request, CancellationToken cancellationToken)
         {
-            var donors = await dBcontext.Donors.ToListAsync();
+
+            var skip = (request.PaginatioFilter.Page - 1) * (request.PaginatioFilter.Size);
+
+            var donors = await dBcontext.Donors
+                .Skip(skip)
+                .Take(request.PaginatioFilter.Size)
+                .ToListAsync();
 
             return mapper.Map<List<DonorViewModel>>(donors);
 

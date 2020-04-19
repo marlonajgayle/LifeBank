@@ -21,7 +21,7 @@ namespace LifeBank.Application.Authentication.Command.Login
 
             if (!result.Succeeded)
             {
-                throw new BadRequestException("Invalid login"); 
+                throw new BadRequestException("Invalid login");
             }
 
             return Unit.Value;

@@ -1,5 +1,4 @@
-﻿using LifeBank.Domain.Entities;
-using LifeBank.Domain.Enums;
+﻿using LifeBank.Domain.Enums;
 using System;
 
 namespace LifeBank.Application.Appointments.Models
