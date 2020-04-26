@@ -1,11 +1,8 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using LifeBank.Application.Common.Interfaces;
 
 namespace LifeBank.Infrastructure.Identity
 {
-    public class ApplicationUser : IdentityUser
+    public class ApplicationUser : IApplicationUser
     {
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public long DonorId { get; set; }
     }
 }

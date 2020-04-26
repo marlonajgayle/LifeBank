@@ -9,7 +9,6 @@ using LifeBank.Application.Appointments.Models;
 using LifeBank.Application.Appointments.Queries.GetAppointmentDetails;
 using LifeBank.Application.Appointments.Queries.GetAppointmentList;
 using LifeBank.Application.Common.Interfaces;
-using LifeBank.Application.Common.Models.Responses;
 using LifeBank.Application.Pagination;
 using MediatR;
 using Microsoft.AspNetCore.Http;

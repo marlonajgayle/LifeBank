@@ -52,7 +52,7 @@ namespace LifeBank.Infrastructure.Identity
             return result.ToApplicationResult();
         }
 
-        public async Task<object> FindUserByEmailAsync(string email)
+        public async Task<IApplicationUser> FindUserByEmailAsync(string email)
         {
             return await userManager.FindByEmailAsync(email);
         }
@@ -62,7 +62,7 @@ namespace LifeBank.Infrastructure.Identity
             return await userManager.GeneratePasswordResetTokenAsync((ApplicationUser)user);
         }
 
-        public async Task<object> GetUserAsync(object user)
+        public async Task<IApplicationUser> GetUserAsync(object user)
         {
             return await userManager.GetUserAsync((ClaimsPrincipal)user);
         }
@@ -76,6 +76,9 @@ namespace LifeBank.Infrastructure.Identity
             return result.ToApplicationResult();
         }
 
-
+        public async Task<bool> CheckPasswordAsync(object user, string password)
+        {
+            return await userManager.CheckPasswordAsync((ApplicationUser)user, password);
+        }
     }
 }

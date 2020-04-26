@@ -1,12 +1,15 @@
 ﻿using LifeBank.Application.Common.Interfaces;
 using LifeBank.Infrastructure.Identity;
 using LifeBank.Infrastructure.Persistence;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace LifeBank.Infrastructure
 {
@@ -18,6 +21,7 @@ namespace LifeBank.Infrastructure
 
             services.AddScoped<IUserManager, UserManagerService>();
             services.AddScoped<ISignInManager, SignInManagerService>();
+            services.AddTransient<ISecurityTokenManager, SecurityTokenManager>();
             services.AddTransient<IMailService, MailService>();
 
             services.AddSingleton<IUriService>(provider =>
@@ -26,6 +30,32 @@ namespace LifeBank.Infrastructure
                 var request = accessor.HttpContext.Request;
                 var absoluteUri = string.Concat(request.Scheme, "://", request.Host.ToUriComponent(), "/");
                 return new UriService(absoluteUri);
+            });
+
+            // Configure JwtSettings
+            var jwtSettings = new JwtSettings();
+            configuration.GetSection(nameof(JwtSettings)).Bind(jwtSettings);
+            services.AddSingleton(jwtSettings);
+
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(options =>
+            {
+                options.SaveToken = true;
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(jwtSettings.Secret)),
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
+                    RequireExpirationTime = false,
+                    ValidateLifetime = true
+
+                };
             });
 
             services.AddDbContext<LifeBankDbContext>(

@@ -19,6 +19,14 @@ namespace LifeBank.Application.Registration.RegisterDonor.Commands
 
         public async Task<Unit> Handle(RegisterDonorCommand request, CancellationToken cancellationToken)
         {
+            // check if user already registered
+            var existingUser = userManager.FindUserByEmailAsync(request.Email);
+            if (existingUser != null)
+            {
+                throw new BadRequestException($"user with this {request.Email} email address already exists.");
+            }
+
+            // Create new user account
             var result = await userManager.CreateUserAsync(request.Email, request.Password);
 
             if (!result.Result.Succeeded)

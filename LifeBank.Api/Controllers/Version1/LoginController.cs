@@ -1,4 +1,5 @@
-﻿using LifeBank.Api.Routes.Version1;
+﻿using LifeBank.Api.Contracts.Version1.Responses;
+using LifeBank.Api.Routes.Version1;
 using LifeBank.Application.Authentication.Command.Login;
 using LifeBank.Application.Authentication.Command.Logout;
 using MediatR;
@@ -29,9 +30,13 @@ namespace LifeBank.Api.Controllers.Version1
         public async Task<IActionResult> Login([FromBody] LoginViewModel model)
         {
             var command = new LoginCommand(model);
-            var results = await mediator.Send(command);
+            var result = await mediator.Send(command);
 
-            return Ok();
+            return Ok(new AuthSuccessResponse()
+            {
+                Token = result.Token,
+                Success = true
+            });
         }
 
         /// <summary>

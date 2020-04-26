@@ -3,7 +3,6 @@ using LifeBank.Api.Contracts.Version1.Requests;
 using LifeBank.Api.Routes.Version1;
 using LifeBank.Api.Services;
 using LifeBank.Application.Common.Interfaces;
-using LifeBank.Application.Common.Models.Responses;
 using LifeBank.Application.Donations.Commands.CreateDonation;
 using LifeBank.Application.Donations.Commands.DeleteDonation;
 using LifeBank.Application.Donations.Commands.UpdateDonation;

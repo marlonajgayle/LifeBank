@@ -1,30 +1,42 @@
 ﻿using LifeBank.Application.Common.Exceptions;
 using LifeBank.Application.Common.Interfaces;
+using LifeBank.Application.Common.Models;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace LifeBank.Application.Authentication.Command.Login
 {
-    public class LoginCommandHandler : IRequestHandler<LoginCommand, Unit>
+    public class LoginCommandHandler : IRequestHandler<LoginCommand, TokenResult>
     {
-        private readonly ISignInManager signInManagerService;
+        private readonly IUserManager userManager;
+        private readonly ISecurityTokenManager securityTokenManager;
 
-        public LoginCommandHandler(ISignInManager signInManagerService)
+        public LoginCommandHandler(IUserManager userManager, ISecurityTokenManager securityTokenManager)
         {
-            this.signInManagerService = signInManagerService;
+            this.userManager = userManager;
+            this.securityTokenManager = securityTokenManager;
         }
 
-        public async Task<Unit> Handle(LoginCommand request, CancellationToken cancellationToken)
+        public async Task<TokenResult> Handle(LoginCommand request, CancellationToken cancellationToken)
         {
-            var result = await signInManagerService.LoginAsync(request.Username, request.Password);
+            var user = await userManager.FindUserByEmailAsync(request.Username);
 
-            if (!result.Succeeded)
+            if (user == null)
             {
-                throw new BadRequestException("Invalid login");
+                throw new BadRequestException("username and or password provided is invalid.");
             }
 
-            return Unit.Value;
+            var userHasVaildPassword = await userManager.CheckPasswordAsync(user, request.Password);
+
+            if (!userHasVaildPassword)
+            {
+                throw new BadRequestException("username and or password provided is invalid.");
+            }
+
+            var tokenResult = securityTokenManager.GenerateClaimsTokenAsync(user.DonorId, request.Username);
+
+            return tokenResult;
         }
     }
 }
