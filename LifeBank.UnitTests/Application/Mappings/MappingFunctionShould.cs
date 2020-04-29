@@ -7,25 +7,25 @@ using Xunit;
 
 namespace LifeBank.UnitTests.Application.Mappings
 {
-    public class MappingTests : IClassFixture<MappingTestsFixture>
+    public class MappingMethodShould : IClassFixture<MappingTestsFixture>
     {
         private readonly IConfigurationProvider configuration;
         private readonly IMapper mapper;
 
-        public MappingTests(MappingTestsFixture fixture)
+        public MappingMethodShould(MappingTestsFixture fixture)
         {
             configuration = fixture.ConfigurationProvider;
             mapper = fixture.Mapper;
         }
 
         [Fact]
-        public void ShouldHaveValidConfiguration()
+        public void HaveValidConfiguration()
         {
             configuration.AssertConfigurationIsValid();
         }
 
         [Fact]
-        public void ShouldMapDonorToDonorViewModel()
+        public void MapDonorToDonorViewModel()
         {
             var entity = new Donor();
 
@@ -36,7 +36,7 @@ namespace LifeBank.UnitTests.Application.Mappings
         }
 
         [Fact]
-        public void ShouldMapDonationToDonationViewModel()
+        public void MapDonationToDonationViewModel()
         {
             var entity = new Donation();
 
@@ -47,7 +47,7 @@ namespace LifeBank.UnitTests.Application.Mappings
         }
 
         [Fact]
-        public void ShouldMapAppointmentToAppointmentViewModel()
+        public void MapAppointmentToAppointmentViewModel()
         {
             var entity = new Appointment();
 
