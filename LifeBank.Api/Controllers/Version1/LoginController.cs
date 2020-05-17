@@ -1,7 +1,10 @@
-﻿using LifeBank.Api.Contracts.Version1.Responses;
+﻿using AutoMapper;
+using LifeBank.Api.Contracts.Version1.Requests;
+using LifeBank.Api.Contracts.Version1.Responses;
 using LifeBank.Api.Routes.Version1;
 using LifeBank.Application.Authentication.Command.Login;
 using LifeBank.Application.Authentication.Command.Logout;
+using LifeBank.Application.Authentication.Command.Refresh.Command;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -13,10 +16,12 @@ namespace LifeBank.Api.Controllers.Version1
     public class LoginController : ControllerBase
     {
         private readonly IMediator mediator;
+        private readonly IMapper mapper;
 
-        public LoginController(IMediator mediator)
+        public LoginController(IMediator mediator, IMapper mapper)
         {
             this.mediator = mediator;
+            this.mapper = mapper;
         }
 
         /// <summary>
@@ -35,6 +40,22 @@ namespace LifeBank.Api.Controllers.Version1
             return Ok(new AuthSuccessResponse()
             {
                 Token = result.Token,
+                RefreshToken = result.RefreshToken,
+                Success = true
+            });
+        }
+
+        [HttpPost(ApiRoutes.Auth.Refresh)]
+        public async Task<IActionResult> Refresh([FromBody] RefreshTokenRequest refreshTokenRequest)
+        {
+            var refreshToken = mapper.Map<TokenDto>(refreshTokenRequest);
+            var command = new RefreshTokenCommand(refreshToken);
+            var result = await mediator.Send(command);
+
+            return Ok(new AuthSuccessResponse()
+            {
+                Token = result.Token,
+                RefreshToken = result.RefreshToken,
                 Success = true
             });
         }

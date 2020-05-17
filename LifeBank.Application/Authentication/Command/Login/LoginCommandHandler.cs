@@ -34,7 +34,7 @@ namespace LifeBank.Application.Authentication.Command.Login
                 throw new BadRequestException("username and or password provided is invalid.");
             }
 
-            var tokenResult = securityTokenManager.GenerateClaimsTokenAsync(user.DonorId, request.Username);
+            var tokenResult = await securityTokenManager.GenerateClaimsTokenAsync(user.DonorId, request.Username, cancellationToken);
 
             return tokenResult;
         }
