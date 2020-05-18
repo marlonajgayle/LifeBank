@@ -22,5 +22,6 @@ namespace LifeBank.Application.Common.Interfaces
         Task<Result> ResetPasswordAsync(object user, string token, string password);
 
         Task<bool> CheckPasswordAsync(object user, string password);
+
     }
 }

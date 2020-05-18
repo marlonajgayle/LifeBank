@@ -80,5 +80,7 @@ namespace LifeBank.Infrastructure.Identity
         {
             return await userManager.CheckPasswordAsync((ApplicationUser)user, password);
         }
+
+
     }
 }

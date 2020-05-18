@@ -41,8 +41,9 @@
 
         public static class Auth
         {
-            public const string Login = Base + "/Login";
-            public const string Logout = Base + "/Logout";
+            public const string Login = Base + "/identity/Login";
+            public const string Logout = Base + "/identity/Logout";
+            public const string Refresh = Base + "/identity/refresh";
         }
 
         public static class Recovery
